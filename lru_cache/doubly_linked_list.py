@@ -49,25 +49,76 @@ class DoublyLinkedList:
         return self.length
 
     def add_to_head(self, value):
-        pass
+        new_node = ListNode(value, None, None)
+        self.length += 1
+        if not self.head and not self.tail:  # if there is no head or tail the list is empty
+            self.head = new_node  # new node is head and tail
+            self.tail = new_node
+        else:
+            new_node.next = self.head  # make this node the head
+            self.head.prev = new_node  # rearrange the pointers, this becoming new head
+            self.head = new_node
 
     def remove_from_head(self):
-        pass
+        value = self.head.value
+        self.delete(self.head)
+        return value
 
     def add_to_tail(self, value):
-        pass
+        new_node = ListNode(value, None, None)
+        self.length += 1  # if empty and we add something to list
+        if not self.head and not self.tail:  # if there is no head or tail the list is empty
+            self.head = new_node  # new node is head and tail
+            self.tail = new_node
+        else:
+            new_node.prev = self.tail  # make this node the head
+            self.tail.next = new_node  # rearrange the pointers, this becoming new head
+            self.tail = new_node
 
     def remove_from_tail(self):
-        pass
+        value = self.tail.value
+        self.delete(self.value)
+        return value
 
     def move_to_front(self, node):
-        pass
+        value = node.value
+        self.delete(node)
+        self.add_to_head(value)
 
     def move_to_end(self, node):
-        pass
+        value = node.value
+        self.delete(node)
+        self.add_to_tail(value)
 
     def delete(self, node):
-        pass
+        self.length -= 1
+
+        # If LL is empty
+        if not self.head and not self.tail:
+            return
+        # If head and tail
+        if self.head == self.tail:  # if there's only one item in the list
+            self.head = None  # we don't want to delete the entire list, just get rid of the pointers
+            self.tail = None  # garbage collector will handle it for us
+        # head
+        elif self.head == node:
+            self.head = self.head.next
+            node.delete()
+        # tail
+        elif self.tail == node:
+            self.tail = self.tail.prev
+            node.delete()
+        # otherwise
+        else:
+            node.delete()
 
     def get_max(self):
-        pass
+        if self.head is None:
+            return None
+        max_value = self.head.value
+        current = self.head
+        while current:
+            if current.value > max_value:
+                max_value = current.value
+            current = current.next
+        return max_value
