@@ -28,7 +28,7 @@ class LRUCache:
     def get(self, key):
         if key in self.storage:
             node = self.storage[key]
-            self.order.move_to_end(node)
+            self.order.move_to_end(node) #move to end of LL
             return node.value[1]
         else:
             return None
