@@ -31,27 +31,25 @@ class BinarySearchTree:
     # Return True if the tree contains the value
     # False if it does not
     def contains(self, target):
-        if type(target) is not int:
-            raise ValueError("Not an integer")
-        if target == self.value:
+        if self.value == target:
             return True
-        elif target > self.value:
-            if self.right:
-                return self.right.contains(target)
-            else:
-                return False
         elif target < self.value:
             if self.left:
                 return self.left.contains(target)
             else:
                 return False
+        elif target >= self.value:
+            if self.right:
+                return self.right.contains(target)
+            else:
+                return False
 
     # Return the maximum value found in the tree
     def get_max(self):
-        if self.right:
-            return self.right.get_max()
-        else:
+        if not self.right:
             return self.value
+        else:
+            return self.right.get_max()
 
     # Call the function `cb` on the value of each node
     # You may use a recursive or iterative approach
