@@ -1,6 +1,6 @@
-import sys
-sys.path.append('../doubly_linked_list')
 from doubly_linked_list import DoublyLinkedList
+# sys.path.append('./doubly_linked_list')
+# import sys
 
 
 class Queue:
@@ -25,5 +25,3 @@ class Queue:
     # Number of Items in queue
     def len(self):
         return self.size
-
-
