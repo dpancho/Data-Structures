@@ -2,8 +2,6 @@ import sys
 sys.path.append('../doubly_linked_list')
 from doubly_linked_list import DoublyLinkedList
 
-
-
 class LRUCache:
     """
     Our LRUCache class keeps track of the max number of nodes it
@@ -66,7 +64,8 @@ class LRUCache:
 
         # if first data added -- give tuple with key and value
         self.order.add_to_tail((key, value))
-        # SINCE WE HAVE SIZE, WE KNOW WE WILL AD TO IT
+        
+        # SINCE WE HAVE SIZE, WE KNOW WE WILL ADD TO IT
         # add to dictionary
         self.storage[key] = self.order.tail
         self.size += 1
