@@ -74,31 +74,61 @@ class BinarySearchTree:
     # Print all the values in order from low to high
     # Hint:  Use a recursive, depth first traversal
     def in_order_print(self, node):
-        pass
+        if self.left is not None:
+           self.left.in_order_print(self.left)
+        print(self.value)
+        if self.right is not None:
+            self.right.in_order_print(self.right)
 
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
+
+    #     BFT Steps:
+    # initialize a queue
+    # push root to queue
+    # while stack not empty
+    # pop top item out of queue into temp
+    # DO THE THING!!!!!!
+    # if temp has right right put into queue
+    # if temp has left left put into queue
+
     def bft_print(self, node):
-        pass
+        if node is None:
+            return
+        q = Queue() #make your queue
+        q.enqueue(node)#adds to back of queue
+        while q.size > 0:
+            node = q.dequeue() #remove and return from front of queue
+            print(node.value)
+            if node.left is not None: #same for left side
+                q.enqueue(node.left)
+            if node.right is not None: #same for right side
+                q.enqueue(node.right)
 
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
-    def dft_print(self, node):
-        pass
 
-    # Print the value of every node, starting with the given node,
-    # in an iterative depth first traversal
-    def dft_print(self, node):
-        stack = Stack()
-        stack.push(node)
-        while stack.len() > 0:
-            current_node = stack.pop().value
-            print(current_node.value)
+    #     DFT Steps:
+    # initialize a stack
+    # push root to stack
+    # while stack not empty
+    # pop top item out of stack into temp
+    # DO THE THING!!!!!!
+    # if temp has right right put into stack
+    # if temp has left left put into stack
 
-            if current_node.left:
-                stack.push(current_node.left)
-            if current_node.right:
-                stack.push(current_node.right)
+    def dft_print(self, node):
+        if node is None:
+          return
+        s = Stack() #make that stack
+        s.push(node) #push her out 
+        while s.size > 0:
+            node = s.pop()
+            print(node.value)
+            if node.left is not None:
+                s.push(node.left)
+            if node.right is not None:
+                s.push(node.right)
 
     # STRETCH Goals -------------------------
     # Note: Research may be required
